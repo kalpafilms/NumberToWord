@@ -82,3 +82,8 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# User preference
+
+## Test setup for XCode
+N2WTests/
