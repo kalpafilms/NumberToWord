@@ -7,8 +7,15 @@
 
 #include <iostream>
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+int main(int argc, const char *argv[])
+{
+    std::string number;
+
+    std::cout << "Enter a number to convert, or 'q' to exit: ";
+    std::cin >> number;
+    std::cout << std::endl;
+
+    std::cout << number << std::endl;
+
     return 0;
 }

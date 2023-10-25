@@ -84,6 +84,7 @@ Temporary Items
 .apdisk
 
 # User preference
+build/
 
 ## Test setup for XCode
 N2WTests/
