@@ -36,3 +36,24 @@
 
 - Implement with C++
 - Extend to non-English languages, including Korean, Japanese
+
+## Mock process for English
+
+1. Get user input.
+   - `> 12345`
+2. Parse the input string into the integer.
+   - '12345' -> 12345
+3. Find the remainders of the integer divided by powers of 10, and store them separately in a container.
+   - [12345 % 10, 1234 % 10, 123 % 10, 12 % 10, 1 % 10] -> [5, 4, 3, 2, 1]
+4. Pop two elements and convert them to words for ones digit and tens digit. This is because there are some irregular cardinal numbers, such as eleven, twelve, and so on.
+   - (5, 4), [3, 2, 1] -> 'forty-five'
+5. Pop an element and convert it to a word for hundreds digit.
+   - (3), [2, 1] -> 'three hundred'
+6. Pop an element from the thousands digits container [thousand, million, billion].
+   - 'thousand', [million, billion]
+7. Repeat steps 4 through 6, until the container is empty.
+   - (2, 1), [] -> 'twelve'
+8. Store the converted words in a Last-In-First-Out container at each step.
+   - ['forty-five', 'three hundred', 'thousand', 'twelve']
+9. Pop the words from the container in LIFO order to form a complete word.
+   - twelve thousand three hundred forty-five
