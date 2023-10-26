@@ -12,7 +12,8 @@ int main(int argc, const char *argv[])
 {
     std::string number{};
     std::cout << number << std::endl;
-    while (boost::algorithm::to_upper_copy(number) != "Q") {
+    while (boost::algorithm::to_upper_copy(number) != "Q")
+    {
         std::cout << "Enter a number to convert, or 'q' to exit: ";
         std::cin >> number;
         std::cout << number << std::endl;
