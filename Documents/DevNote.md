@@ -14,6 +14,7 @@
 - See an error message when I enter '1,234'.
 - See an error message when I enter -1.
 - See an error message when I enter -42.
+- See an error message when I enter greater number than the maximum value of unsigned integer.
 - Terminate the programme when I enter 'q'.
 - See input prompt again when I enter arbitrary characters other than 'q'.
 
@@ -57,3 +58,8 @@
    - ['forty-five', 'three hundred', 'thousand', 'twelve']
 9. Pop the words from the container in LIFO order to form a complete word.
    - twelve thousand three hundred forty-five
+
+## Methods
+
+- `void transform(const std::string &input)`: Entry point to transform the integer
+- `uint32_t stoui(const std::string &input)`: Custom String to Integer function to handle numeric values only
