@@ -18,6 +18,8 @@ public:
 
     void transform(const std::string &input);
     uint32_t stoui(const std::string &input);
+    bool isUnderLimit(const std::string &input);
+    bool isNumber(const std::string &input);
 };
 
 #endif /* Number2Word_hpp */

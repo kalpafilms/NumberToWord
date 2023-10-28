@@ -135,3 +135,95 @@ TEST_F(N2WTests, stoui_ShouldRaiseException_WhenPass5678901234)
 
     ASSERT_THROW(n2w.stoui(INPUT), std::invalid_argument);
 }
+
+/**
+ * Tests for isNumber function
+ */
+
+TEST_F(N2WTests, isNumber_ShouldReturnTrue_WhenPass0)
+{
+    const auto INPUT = "0";
+
+    ASSERT_TRUE(n2w.isNumber(INPUT));
+}
+
+TEST_F(N2WTests, isNumber_ShouldReturnFalse_WhenPass123a)
+{
+    const auto INPUT = "123a";
+
+    ASSERT_FALSE(n2w.isNumber(INPUT));
+}
+
+TEST_F(N2WTests, isNumber_ShouldReturnTrue_WhenPass1)
+{
+    const auto INPUT = "1";
+
+    ASSERT_TRUE(n2w.isNumber(INPUT));
+}
+
+TEST_F(N2WTests, isNumber_ShouldReturnFalse_WhenPassNegative1)
+{
+    const auto INPUT = "-1";
+
+    ASSERT_FALSE(n2w.isNumber(INPUT));
+}
+
+TEST_F(N2WTests, isNumber_ShouldReturnFalse_WhenPass1_234)
+{
+    const auto INPUT = "1,234";
+
+    ASSERT_FALSE(n2w.isNumber(INPUT));
+}
+
+TEST_F(N2WTests, isNumber_ShouldReturnTrue_WhenPass999999999999)
+{
+    const auto INPUT = "999999999999";
+
+    ASSERT_TRUE(n2w.isNumber(INPUT));
+}
+
+/**
+ * Tests for isUnderLimit function
+ */
+
+TEST_F(N2WTests, isUnderLimit_ShouldReturnTrue_WhenPass0)
+{
+    const auto INPUT = "0";
+
+    ASSERT_TRUE(n2w.isUnderLimit(INPUT));
+}
+
+TEST_F(N2WTests, isUnderLimit_ShouldReturnFalse_WhenPass1000000000000)
+{
+    const auto INPUT = "1000000000000";
+
+    ASSERT_FALSE(n2w.isUnderLimit(INPUT));
+}
+
+TEST_F(N2WTests, isUnderLimit_ShouldReturnTrue_WhenPass999999999999)
+{
+    const auto INPUT = "999999999999";
+
+    ASSERT_TRUE(n2w.isUnderLimit(INPUT));
+}
+
+TEST_F(N2WTests, isUnderLimit_ShouldReturnTrue_WhenPass123a)
+{
+    const auto INPUT = "123a";
+
+    ASSERT_TRUE(n2w.isUnderLimit(INPUT));
+}
+
+TEST_F(N2WTests, isUnderLimit_ShouldReturnTrue_WhenPass1_234)
+{
+    const auto INPUT = "1,234";
+
+    ASSERT_TRUE(n2w.isUnderLimit(INPUT));
+}
+
+TEST_F(N2WTests, isUnderLimit_ShouldReturnFalse_WhenPass999_999_999_999)
+{
+    const auto INPUT = "999,999,999,999";
+
+    ASSERT_FALSE(n2w.isUnderLimit(INPUT));
+}

@@ -59,7 +59,34 @@
 9. Pop the words from the container in LIFO order to form a complete word.
    - twelve thousand three hundred forty-five
 
+### Amend 1
+
+1. Get user input.
+   - `> 12345`
+2. Verify that the string has fewer digits than the specified length limit.
+   - '12345 -> Pass
+   - '999999999999' (999,999,999,999) -> Pass
+   - '1000000000000' (1,000,000,000,000) -> Fail
+3. Verify that the string does not contain any non-numeric characters.
+   - '12345' -> Pass
+   - '12,345' -> Fail
+   - '12345a' -> Fail
+4. Get last 2 elements from the string, and convert them to words for ones digit and tens digit. This is because there are some irregular cardinal numbers, such as eleven, twelve, and so on.
+   - 45 -> 'forty-five'
+5. Get a previous element, and convert it to a word for hundreds digit.
+   - 3 -> 'three hundred'
+6. Pop an element from the thousands digits container [thousand, million, billion].
+   - 'thousand', [million, billion]
+7. Repeat steps 3 through 5, until the first number is processed.
+   - 12 -> 'twelve'
+8. Store the converted words in a Last-In-First-Out container at each step.
+   - ['forty-five', 'three hundred', 'thousand', 'twelve']
+9. Pop the words from the container in LIFO order to form a complete word.
+   - twelve thousand three hundred forty-five
+
 ## Methods
 
 - `void transform(const std::string &input)`: Entry point to transform the integer
 - `uint32_t stoui(const std::string &input)`: Custom String to Integer function to handle numeric values only
+- `bool isUnderLimit(const std::string &input);`: String validator function, whether it is shorter than the specified length
+- `bool isNumber(const std::string &input)`: String validator function, whether it contains only all numeric values

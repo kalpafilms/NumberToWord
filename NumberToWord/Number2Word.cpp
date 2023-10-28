@@ -18,6 +18,17 @@ Number2Word::~Number2Word() {}
  */
 void Number2Word::transform(const std::string &input)
 {
+    bool isShorterLength = isUnderLimit(input);
+    if (isShorterLength)
+    {
+        throw std::invalid_argument("Exceed length limit");
+    }
+    bool notNumber = !isNumber(input);
+    if (notNumber)
+    {
+        throw std::invalid_argument("Not a number");
+    }
+
     if (input == "1")
     {
         std::cout << "one";
@@ -25,10 +36,6 @@ void Number2Word::transform(const std::string &input)
     else if (input == "0")
     {
         std::cout << "zero";
-    }
-    else
-    {
-        throw std::invalid_argument("Not a number");
     }
 }
 
@@ -67,4 +74,43 @@ uint32_t Number2Word::stoui(const std::string &input)
     }
 
     return converted;
+}
+
+/**
+ * Verify that a string is shorter than the specific length
+ *
+ * @param input String to validate
+ * @return      Whether it is shorter than the limit
+ */
+bool Number2Word::isUnderLimit(const std::string &input)
+{
+    const size_t LENGTH_LIMIT = 12;
+
+    bool isLonger = (input.length() > LENGTH_LIMIT);
+    if (isLonger)
+    {
+        return false;
+    }
+
+    return true;
+}
+
+/**
+ * Verify that a string consists only of numbers
+ *
+ * @param input String to validate
+ * @return      Whether all characters are numeric
+ */
+bool Number2Word::isNumber(const std::string &input)
+{
+    for (const auto c : input)
+    {
+        bool notNumber = (c < '0' || c > '9');
+        if (notNumber)
+        {
+            return false;
+        }
+    }
+
+    return true;
 }
