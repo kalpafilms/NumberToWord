@@ -18,8 +18,8 @@ Number2Word::~Number2Word() {}
  */
 void Number2Word::transform(const std::string &input)
 {
-    bool isShorterLength = isUnderLimit(input);
-    if (isShorterLength)
+    bool isExceedLengthLimit = !isUnderLengthLimit(input);
+    if (isExceedLengthLimit)
     {
         throw std::invalid_argument("Exceed length limit");
     }
@@ -31,11 +31,11 @@ void Number2Word::transform(const std::string &input)
 
     if (input == "1")
     {
-        std::cout << "one";
+        std::cout << "one" << std::endl;
     }
     else if (input == "0")
     {
-        std::cout << "zero";
+        std::cout << "zero" << std::endl;
     }
 }
 
@@ -47,8 +47,8 @@ void Number2Word::transform(const std::string &input)
  */
 uint32_t Number2Word::stoui(const std::string &input)
 {
-    uint32_t converted = 0;
-    const uint32_t MAX_CHECKER = UINT32_MAX / 10;
+    uint32_t converted{0};
+    const uint32_t MAX_CHECKER{UINT32_MAX / 10};
 
     bool isLongerThanMaxLength = (input.length() > 10);
     if (isLongerThanMaxLength)
@@ -82,17 +82,12 @@ uint32_t Number2Word::stoui(const std::string &input)
  * @param input String to validate
  * @return      Whether it is shorter than the limit
  */
-bool Number2Word::isUnderLimit(const std::string &input)
+bool Number2Word::isUnderLengthLimit(const std::string &input)
 {
-    const size_t LENGTH_LIMIT = 12;
+    const size_t LENGTH_LIMIT{12};
 
-    bool isLonger = (input.length() > LENGTH_LIMIT);
-    if (isLonger)
-    {
-        return false;
-    }
-
-    return true;
+    bool isShorterThanLimit = input.length() <= LENGTH_LIMIT;
+    return isShorterThanLimit;
 }
 
 /**

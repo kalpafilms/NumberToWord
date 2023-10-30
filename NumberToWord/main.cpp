@@ -6,7 +6,6 @@
 //
 
 #include <iostream>
-#include <boost/algorithm/string.hpp>
 
 #include "Number2Word.hpp"
 
@@ -15,10 +14,15 @@ int main(int argc, const char *argv[])
     Number2Word n2w;
     std::string number{};
 
-    while (boost::algorithm::to_upper_copy(number) != "Q")
-    {
+    while (true) {
         std::cout << "Enter a number to convert, or 'q' to exit: ";
         std::cin >> number;
+        
+        // Exit when 'Q' is entered
+        if (number.length() == 1 && std::toupper(number[0]) == 'Q') {
+            break;
+        }
+
         n2w.transform(number);
     }
 
