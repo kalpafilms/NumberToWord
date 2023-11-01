@@ -17,12 +17,13 @@ class LookupEnglish
 private:
     std::vector<std::string> onesDigit;
     std::vector<std::string> tensDigit;
-    //    std::deque<std::string> thousandDigits{"thousand", "million", "billion"};
+    std::deque<std::string> thousandDigits;
 
 public:
     LookupEnglish();
     virtual ~LookupEnglish();
 
     std::string getWord(uint32_t number);
+    std::string getThousandSeparator();
 };
 #endif /* LookupEnglish_hpp */

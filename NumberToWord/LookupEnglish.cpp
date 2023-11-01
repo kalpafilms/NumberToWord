@@ -14,13 +14,14 @@ LookupEnglish::LookupEnglish()
         "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
         "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
     tensDigit = {"twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
+    thousandDigits = {"thousand", "million", "billion"};
 }
 LookupEnglish::~LookupEnglish() {}
 
 /**
- * Look up word for two-digit number
+ * Look up table for one or two-digit number
  *
- * @param number Two-digit unsigned integer to get the English word
+ * @param number Less than two-digit unsigned integer to get the English word
  * @return       An English word for the number
  */
 std::string LookupEnglish::getWord(uint32_t number)
@@ -50,4 +51,22 @@ std::string LookupEnglish::getWord(uint32_t number)
     }
 
     return word;
+}
+
+/**
+ * Look up table for thousand separators
+ *
+ * @return A thousand separator word
+ */
+std::string LookupEnglish::getThousandSeparator()
+{
+    if (thousandDigits.empty())
+    {
+        throw std::out_of_range("No more thousand separator");
+    }
+
+    std::string separator{thousandDigits.front()};
+    thousandDigits.pop_front();
+
+    return separator;
 }

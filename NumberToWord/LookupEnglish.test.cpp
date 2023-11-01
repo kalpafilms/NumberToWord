@@ -41,7 +41,7 @@ TEST_F(LookupEnTests, getWord_ShouldReturnOne_WhenPass1)
     ASSERT_EQ(word, EXPECTED);
 }
 
-TEST_F(LookupEnTests, getWord_ShouldReturnForteen_WhenPass14)
+TEST_F(LookupEnTests, getWord_ShouldReturnFourteen_WhenPass14)
 {
     const uint32_t INPUT{14};
     const std::string EXPECTED{"fourteen"};
@@ -71,9 +71,51 @@ TEST_F(LookupEnTests, getWord_ShouldReturnFortyTwo_WhenPass42)
     ASSERT_EQ(word, EXPECTED);
 }
 
-TEST_F(LookupEnTests, getWord_ShoudRaiseException_WhenPass100)
+TEST_F(LookupEnTests, getWord_ShouldRaiseException_WhenPass100)
 {
     const uint32_t INPUT{100};
 
     ASSERT_THROW(lookup.getWord(INPUT), std::invalid_argument);
+}
+
+/**
+ * Tests for getThousandSeparator function
+ */
+TEST_F(LookupEnTests, getThousandSeparator_ShouldReturnThousand_WhenCalledOnce)
+{
+    const std::string EXPECTED{"thousand"};
+
+    std::string separator = lookup.getThousandSeparator();
+
+    ASSERT_EQ(separator, EXPECTED);
+}
+
+TEST_F(LookupEnTests, getThousandSeparator_ShouldReturnMillion_OnSecondCall)
+{
+    const std::string EXPECTED{"million"};
+
+    lookup.getThousandSeparator();
+    std::string separator = lookup.getThousandSeparator();
+
+    ASSERT_EQ(separator, EXPECTED);
+}
+
+TEST_F(LookupEnTests, getThousandSeparator_ShouldReturnBillion_OnThirdCall)
+{
+    const std::string EXPECTED{"billion"};
+
+    lookup.getThousandSeparator();
+    lookup.getThousandSeparator();
+    std::string separator = lookup.getThousandSeparator();
+
+    ASSERT_EQ(separator, EXPECTED);
+}
+
+TEST_F(LookupEnTests, getThousandSeparator_ShouldRaiseException_OnFourthCall)
+{
+    lookup.getThousandSeparator();
+    lookup.getThousandSeparator();
+    lookup.getThousandSeparator();
+
+    ASSERT_THROW(lookup.getThousandSeparator(), std::out_of_range);
 }

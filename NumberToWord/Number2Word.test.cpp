@@ -5,6 +5,7 @@
 //  Created by Joohyung Ryu on 2023-10-26.
 //
 
+#include <algorithm>
 #include <gtest/gtest.h>
 
 #include "Number2Word.hpp"
@@ -23,6 +24,8 @@ protected:
 
         n2w.transform(input);
         std::string output = buffer.str();
+        // Trim new line character
+        output.erase(std::remove(output.begin(), output.end(), '\n'), output.cend());
 
         // Restore std::cout to original one
         std::cout.rdbuf(sbuf);
