@@ -70,3 +70,13 @@ std::string LookupEnglish::getThousandSeparator()
 
     return separator;
 }
+
+/**
+ * Separator size, numbers are divided by 3 digits in English (e.g. 1,000 or 9,999,999)
+ *
+ * @return The separator size, 3
+ */
+uint8_t LookupEnglish::getSeparatorSize()
+{
+    return SEPARATOR_SIZE;
+}

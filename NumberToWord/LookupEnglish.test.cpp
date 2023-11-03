@@ -119,3 +119,15 @@ TEST_F(LookupEnTests, getThousandSeparator_ShouldRaiseException_OnFourthCall)
 
     ASSERT_THROW(lookup.getThousandSeparator(), std::out_of_range);
 }
+
+/**
+ * Tests for getSeparatorSize function
+ */
+TEST_F(LookupEnTests, getSeparatorSize_ShouldReturn3_OnCall)
+{
+    const uint8_t EXPECTED{3};
+
+    uint8_t separatorSize = lookup.getSeparatorSize();
+
+    ASSERT_EQ(separatorSize, EXPECTED);
+}

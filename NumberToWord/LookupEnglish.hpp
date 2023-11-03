@@ -15,6 +15,8 @@
 class LookupEnglish
 {
 private:
+    const uint8_t SEPARATOR_SIZE{3};
+
     std::vector<std::string> onesDigit;
     std::vector<std::string> tensDigit;
     std::deque<std::string> thousandDigits;
@@ -25,5 +27,6 @@ public:
 
     std::string getWord(uint32_t number);
     std::string getThousandSeparator();
+    uint8_t getSeparatorSize();
 };
 #endif /* LookupEnglish_hpp */
