@@ -21,43 +21,23 @@ public:
 /**
  * Tests for getWord function
  */
-TEST_F(LookupEnTests, getWord_ShouldReturnZero_WhenPass0)
+TEST_F(LookupEnTests, getWord_ShouldReturnEmptyString_WhenPass0)
 {
     const uint32_t INPUT{0};
-    const std::string EXPECTED{"zero"};
+    const std::string EXPECTED{""};
 
     std::string word = lookup.getWord(INPUT);
 
     ASSERT_EQ(word, EXPECTED);
 }
 
-TEST_F(LookupEnTests, getWord_ShouldReturnOne_WhenPass1)
+TEST_F(LookupEnTests, getWord_ShouldReturnThree_WhenPass3)
 {
-    const uint32_t INPUT{1};
-    const std::string EXPECTED{"one"};
-
+    const uint32_t INPUT{3};
+    const std::string EXPECTED{"three"};
+    
     std::string word = lookup.getWord(INPUT);
-
-    ASSERT_EQ(word, EXPECTED);
-}
-
-TEST_F(LookupEnTests, getWord_ShouldReturnFourteen_WhenPass14)
-{
-    const uint32_t INPUT{14};
-    const std::string EXPECTED{"fourteen"};
-
-    std::string word = lookup.getWord(INPUT);
-
-    ASSERT_EQ(word, EXPECTED);
-}
-
-TEST_F(LookupEnTests, getWord_ShouldReturnTwenty_WhenPass20)
-{
-    const uint32_t INPUT{20};
-    const std::string EXPECTED{"twenty"};
-
-    std::string word = lookup.getWord(INPUT);
-
+    
     ASSERT_EQ(word, EXPECTED);
 }
 
@@ -65,17 +45,90 @@ TEST_F(LookupEnTests, getWord_ShouldReturnFortyTwo_WhenPass42)
 {
     const uint32_t INPUT{42};
     const std::string EXPECTED{"forty-two"};
+    
+    std::string word = lookup.getWord(INPUT);
+    
+    ASSERT_EQ(word, EXPECTED);
+}
+
+TEST_F(LookupEnTests, getWord_ShouldReturnOneHundred_WhenPass100)
+{
+    const uint32_t INPUT{100};
+    const std::string EXPECTED{"one hundred"};
 
     std::string word = lookup.getWord(INPUT);
 
     ASSERT_EQ(word, EXPECTED);
 }
 
-TEST_F(LookupEnTests, getWord_ShouldRaiseException_WhenPass100)
+TEST_F(LookupEnTests, getWord_ShouldReturnNineHundredNinetyNine_WhenPass999)
+{
+    const uint32_t INPUT{999};
+    const std::string EXPECTED{"nine hundred ninety-nine"};
+
+    std::string word = lookup.getWord(INPUT);
+
+    ASSERT_EQ(word, EXPECTED);
+}
+
+/**
+ * Tests for getWordUnderThousand function
+ */
+TEST_F(LookupEnTests, getWordUnderThousand_ShouldReturnZero_WhenPass0)
+{
+    const uint32_t INPUT{0};
+    const std::string EXPECTED{"zero"};
+
+    std::string word = lookup.getWordUnderThousand(INPUT);
+
+    ASSERT_EQ(word, EXPECTED);
+}
+
+TEST_F(LookupEnTests, getWordUnderThousand_ShouldReturnOne_WhenPass1)
+{
+    const uint32_t INPUT{1};
+    const std::string EXPECTED{"one"};
+
+    std::string word = lookup.getWordUnderThousand(INPUT);
+
+    ASSERT_EQ(word, EXPECTED);
+}
+
+TEST_F(LookupEnTests, getWordUnderThousand_ShouldReturnFourteen_WhenPass14)
+{
+    const uint32_t INPUT{14};
+    const std::string EXPECTED{"fourteen"};
+
+    std::string word = lookup.getWordUnderThousand(INPUT);
+
+    ASSERT_EQ(word, EXPECTED);
+}
+
+TEST_F(LookupEnTests, getWordUnderThousand_ShouldReturnTwenty_WhenPass20)
+{
+    const uint32_t INPUT{20};
+    const std::string EXPECTED{"twenty"};
+
+    std::string word = lookup.getWordUnderThousand(INPUT);
+
+    ASSERT_EQ(word, EXPECTED);
+}
+
+TEST_F(LookupEnTests, getWordUnderThousand_ShouldReturnFortyTwo_WhenPass42)
+{
+    const uint32_t INPUT{42};
+    const std::string EXPECTED{"forty-two"};
+
+    std::string word = lookup.getWordUnderThousand(INPUT);
+
+    ASSERT_EQ(word, EXPECTED);
+}
+
+TEST_F(LookupEnTests, getWordUnderThousand_ShouldRaiseException_WhenPass100)
 {
     const uint32_t INPUT{100};
 
-    ASSERT_THROW(lookup.getWord(INPUT), std::invalid_argument);
+    ASSERT_THROW(lookup.getWordUnderThousand(INPUT), std::invalid_argument);
 }
 
 /**

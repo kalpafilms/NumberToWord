@@ -8,8 +8,9 @@
 #ifndef LookupEnglish_hpp
 #define LookupEnglish_hpp
 
-#include <iostream>
 #include <deque>
+#include <iostream>
+#include <sstream>
 #include <vector>
 
 class LookupEnglish
@@ -17,15 +18,20 @@ class LookupEnglish
 private:
     const uint8_t SEPARATOR_SIZE{3};
 
-    std::vector<std::string> onesDigit;
-    std::vector<std::string> tensDigit;
-    std::deque<std::string> thousandDigits;
+    const std::vector<std::string> onesDigit{
+        "zero",
+        "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+        "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
+    const std::vector<std::string> tensDigit{"twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
+    const std::string HUNDRED{"hundred"};
+    std::deque<std::string> thousandDigits{"thousand", "million", "billion"};
 
 public:
     LookupEnglish();
     virtual ~LookupEnglish();
 
     std::string getWord(uint32_t number);
+    std::string getWordUnderThousand(uint32_t number);
     std::string getThousandSeparator();
     uint8_t getSeparatorSize();
 };

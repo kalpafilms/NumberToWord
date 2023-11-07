@@ -7,16 +7,36 @@
 
 #include "LookupEnglish.hpp"
 
-LookupEnglish::LookupEnglish()
-{
-    onesDigit = {
-        "zero",
-        "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
-        "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
-    tensDigit = {"twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
-    thousandDigits = {"thousand", "million", "billion"};
-}
+LookupEnglish::LookupEnglish() {}
 LookupEnglish::~LookupEnglish() {}
+
+/**
+ * Forming a word for three-digit number
+ */
+std::string LookupEnglish::getWord(uint32_t number)
+{
+    std::stringstream word;
+
+    uint32_t hundred{number / 100};
+    uint32_t tens{number % 100};
+
+    if (hundred > 0)
+    {
+        word << getWordUnderThousand(hundred) << " " << HUNDRED;
+    }
+
+    if (tens > 0)
+    {
+        if (word.str().size() > 0)
+        {
+            word << " ";
+        }
+
+        word << getWordUnderThousand(tens);
+    }
+
+    return word.str();
+}
 
 /**
  * Look up table for one or two-digit number
@@ -24,7 +44,7 @@ LookupEnglish::~LookupEnglish() {}
  * @param number Less than two-digit unsigned integer to get the English word
  * @return       An English word for the number
  */
-std::string LookupEnglish::getWord(uint32_t number)
+std::string LookupEnglish::getWordUnderThousand(uint32_t number)
 {
     if (number > 99)
     {
