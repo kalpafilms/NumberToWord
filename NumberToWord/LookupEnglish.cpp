@@ -22,7 +22,7 @@ std::string LookupEnglish::getWord(uint32_t number)
 
     if (hundred > 0)
     {
-        word << getWordUnderThousand(hundred) << " " << HUNDRED;
+        word << getWordUnderSeparator(hundred) << " " << HUNDRED;
     }
 
     if (tens > 0)
@@ -32,7 +32,7 @@ std::string LookupEnglish::getWord(uint32_t number)
             word << " ";
         }
 
-        word << getWordUnderThousand(tens);
+        word << getWordUnderSeparator(tens);
     }
 
     return word.str();
@@ -44,7 +44,7 @@ std::string LookupEnglish::getWord(uint32_t number)
  * @param number Less than two-digit unsigned integer to get the English word
  * @return       An English word for the number
  */
-std::string LookupEnglish::getWordUnderThousand(uint32_t number)
+std::string LookupEnglish::getWordUnderSeparator(uint32_t number)
 {
     if (number > 99)
     {
@@ -78,7 +78,7 @@ std::string LookupEnglish::getWordUnderThousand(uint32_t number)
  *
  * @return A thousand separator word
  */
-std::string LookupEnglish::getThousandSeparator()
+std::string LookupEnglish::getSeparatorWord()
 {
     if (thousandDigits.empty())
     {

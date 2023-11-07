@@ -14,16 +14,25 @@ int main(int argc, const char *argv[])
     Number2Word n2w;
     std::string number{};
 
-    while (true) {
+    while (true)
+    {
         std::cout << "Enter a number to convert, or 'q' to exit: ";
         std::cin >> number;
-        
+
         // Exit when 'Q' is entered
-        if (number.length() == 1 && std::toupper(number[0]) == 'Q') {
+        if (number.length() == 1 && std::toupper(number[0]) == 'Q')
+        {
             break;
         }
 
-        n2w.transform(number);
+        try
+        {
+            n2w.transform(number);
+        }
+        catch (std::invalid_argument const &e)
+        {
+            std::cout << "Invalid argument (" << number << "): " << e.what() << std::endl;
+        }
     }
 
     return 0;

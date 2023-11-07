@@ -31,8 +31,8 @@ public:
     virtual ~LookupEnglish();
 
     std::string getWord(uint32_t number);
-    std::string getWordUnderThousand(uint32_t number);
-    std::string getThousandSeparator();
+    std::string getWordUnderSeparator(uint32_t number);
+    std::string getSeparatorWord();
     uint8_t getSeparatorSize();
 };
 #endif /* LookupEnglish_hpp */

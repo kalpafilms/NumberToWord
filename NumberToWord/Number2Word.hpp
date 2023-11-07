@@ -8,7 +8,12 @@
 #ifndef Number2Word_hpp
 #define Number2Word_hpp
 
+#include <algorithm>
+#include <cmath>
+#include <deque>
 #include <iostream>
+
+#include "LookupEnglish.hpp"
 
 class Number2Word
 {

@@ -66,6 +66,29 @@ TEST_F(N2WTests, transform_ShouldRaiseException_WhenPass123a)
     ASSERT_THROW(n2w.transform(INPUT), std::invalid_argument);
 }
 
+TEST_F(N2WTests, transform_ShouldPrintOutTwelveThousandThreeHundredFortyFive_WhenPass12345)
+{
+    const std::string INPUT{"12345"};
+    const std::string EXPECTED{"twelve thousand three hundred forty-five"};
+
+    evaluateTransform(INPUT, EXPECTED);
+}
+
+TEST_F(N2WTests, transform_ShouldPrintOutFourBillionTwoHundredNinetyFourMillionNineHundredSixtySevenThousandTwoHundredNinetyFive_WhenPass4294967295)
+{
+    const std::string INPUT{"4294967295"};
+    const std::string EXPECTED{"four billion two hundred ninety-four million nine hundred sixty-seven thousand two hundred ninety-five"};
+
+    evaluateTransform(INPUT, EXPECTED);
+}
+
+TEST_F(N2WTests, transform_ShouldRaiseException_WhenPass4294967296)
+{
+    const std::string INPUT{"4294967296"};
+
+    ASSERT_THROW(n2w.transform(INPUT), std::invalid_argument);
+}
+
 /**
  * Tests for stoui function
  */
@@ -79,10 +102,40 @@ TEST_F(N2WTests, stoui_ShouldReturnParsed0_WhenPass0)
     ASSERT_EQ(converted, EXPECTED);
 }
 
+TEST_F(N2WTests, stoui_ShouldReturnParsed0_WhenPass000)
+{
+    const std::string INPUT{"000"};
+    const uint32_t EXPECTED{0};
+
+    int converted = n2w.stoui(INPUT);
+
+    ASSERT_EQ(converted, EXPECTED);
+}
+
 TEST_F(N2WTests, stoui_ShouldReturnParsed1_WhenPass1)
 {
     const std::string INPUT{"1"};
     const uint32_t EXPECTED{1};
+
+    int converted = n2w.stoui(INPUT);
+
+    ASSERT_EQ(converted, EXPECTED);
+}
+
+TEST_F(N2WTests, stoui_ShouldReturnParsed1_WhenPass001)
+{
+    const std::string INPUT{"001"};
+    const uint32_t EXPECTED{1};
+
+    int converted = n2w.stoui(INPUT);
+
+    ASSERT_EQ(converted, EXPECTED);
+}
+
+TEST_F(N2WTests, stoui_ShouldReturnParsed10_WhenPass010)
+{
+    const std::string INPUT{"010"};
+    const uint32_t EXPECTED{10};
 
     int converted = n2w.stoui(INPUT);
 

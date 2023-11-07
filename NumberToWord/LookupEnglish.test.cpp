@@ -35,9 +35,9 @@ TEST_F(LookupEnTests, getWord_ShouldReturnThree_WhenPass3)
 {
     const uint32_t INPUT{3};
     const std::string EXPECTED{"three"};
-    
+
     std::string word = lookup.getWord(INPUT);
-    
+
     ASSERT_EQ(word, EXPECTED);
 }
 
@@ -45,9 +45,9 @@ TEST_F(LookupEnTests, getWord_ShouldReturnFortyTwo_WhenPass42)
 {
     const uint32_t INPUT{42};
     const std::string EXPECTED{"forty-two"};
-    
+
     std::string word = lookup.getWord(INPUT);
-    
+
     ASSERT_EQ(word, EXPECTED);
 }
 
@@ -72,105 +72,105 @@ TEST_F(LookupEnTests, getWord_ShouldReturnNineHundredNinetyNine_WhenPass999)
 }
 
 /**
- * Tests for getWordUnderThousand function
+ * Tests for getWordUnderSeparator function
  */
-TEST_F(LookupEnTests, getWordUnderThousand_ShouldReturnZero_WhenPass0)
+TEST_F(LookupEnTests, getWordUnderSeparator_ShouldReturnZero_WhenPass0)
 {
     const uint32_t INPUT{0};
     const std::string EXPECTED{"zero"};
 
-    std::string word = lookup.getWordUnderThousand(INPUT);
+    std::string word = lookup.getWordUnderSeparator(INPUT);
 
     ASSERT_EQ(word, EXPECTED);
 }
 
-TEST_F(LookupEnTests, getWordUnderThousand_ShouldReturnOne_WhenPass1)
+TEST_F(LookupEnTests, getWordUnderSeparator_ShouldReturnOne_WhenPass1)
 {
     const uint32_t INPUT{1};
     const std::string EXPECTED{"one"};
 
-    std::string word = lookup.getWordUnderThousand(INPUT);
+    std::string word = lookup.getWordUnderSeparator(INPUT);
 
     ASSERT_EQ(word, EXPECTED);
 }
 
-TEST_F(LookupEnTests, getWordUnderThousand_ShouldReturnFourteen_WhenPass14)
+TEST_F(LookupEnTests, getWordUnderSeparator_ShouldReturnFourteen_WhenPass14)
 {
     const uint32_t INPUT{14};
     const std::string EXPECTED{"fourteen"};
 
-    std::string word = lookup.getWordUnderThousand(INPUT);
+    std::string word = lookup.getWordUnderSeparator(INPUT);
 
     ASSERT_EQ(word, EXPECTED);
 }
 
-TEST_F(LookupEnTests, getWordUnderThousand_ShouldReturnTwenty_WhenPass20)
+TEST_F(LookupEnTests, getWordUnderSeparator_ShouldReturnTwenty_WhenPass20)
 {
     const uint32_t INPUT{20};
     const std::string EXPECTED{"twenty"};
 
-    std::string word = lookup.getWordUnderThousand(INPUT);
+    std::string word = lookup.getWordUnderSeparator(INPUT);
 
     ASSERT_EQ(word, EXPECTED);
 }
 
-TEST_F(LookupEnTests, getWordUnderThousand_ShouldReturnFortyTwo_WhenPass42)
+TEST_F(LookupEnTests, getWordUnderSeparator_ShouldReturnFortyTwo_WhenPass42)
 {
     const uint32_t INPUT{42};
     const std::string EXPECTED{"forty-two"};
 
-    std::string word = lookup.getWordUnderThousand(INPUT);
+    std::string word = lookup.getWordUnderSeparator(INPUT);
 
     ASSERT_EQ(word, EXPECTED);
 }
 
-TEST_F(LookupEnTests, getWordUnderThousand_ShouldRaiseException_WhenPass100)
+TEST_F(LookupEnTests, getWordUnderSeparator_ShouldRaiseException_WhenPass100)
 {
     const uint32_t INPUT{100};
 
-    ASSERT_THROW(lookup.getWordUnderThousand(INPUT), std::invalid_argument);
+    ASSERT_THROW(lookup.getWordUnderSeparator(INPUT), std::invalid_argument);
 }
 
 /**
- * Tests for getThousandSeparator function
+ * Tests for getSeparatorWord function
  */
-TEST_F(LookupEnTests, getThousandSeparator_ShouldReturnThousand_WhenCalledOnce)
+TEST_F(LookupEnTests, getSeparatorWord_ShouldReturnThousand_WhenCalledOnce)
 {
     const std::string EXPECTED{"thousand"};
 
-    std::string separator = lookup.getThousandSeparator();
+    std::string separator = lookup.getSeparatorWord();
 
     ASSERT_EQ(separator, EXPECTED);
 }
 
-TEST_F(LookupEnTests, getThousandSeparator_ShouldReturnMillion_OnSecondCall)
+TEST_F(LookupEnTests, getSeparatorWord_ShouldReturnMillion_OnSecondCall)
 {
     const std::string EXPECTED{"million"};
 
-    lookup.getThousandSeparator();
-    std::string separator = lookup.getThousandSeparator();
+    lookup.getSeparatorWord();
+    std::string separator = lookup.getSeparatorWord();
 
     ASSERT_EQ(separator, EXPECTED);
 }
 
-TEST_F(LookupEnTests, getThousandSeparator_ShouldReturnBillion_OnThirdCall)
+TEST_F(LookupEnTests, getSeparatorWord_ShouldReturnBillion_OnThirdCall)
 {
     const std::string EXPECTED{"billion"};
 
-    lookup.getThousandSeparator();
-    lookup.getThousandSeparator();
-    std::string separator = lookup.getThousandSeparator();
+    lookup.getSeparatorWord();
+    lookup.getSeparatorWord();
+    std::string separator = lookup.getSeparatorWord();
 
     ASSERT_EQ(separator, EXPECTED);
 }
 
-TEST_F(LookupEnTests, getThousandSeparator_ShouldRaiseException_OnFourthCall)
+TEST_F(LookupEnTests, getSeparatorWord_ShouldRaiseException_OnFourthCall)
 {
-    lookup.getThousandSeparator();
-    lookup.getThousandSeparator();
-    lookup.getThousandSeparator();
+    lookup.getSeparatorWord();
+    lookup.getSeparatorWord();
+    lookup.getSeparatorWord();
 
-    ASSERT_THROW(lookup.getThousandSeparator(), std::out_of_range);
+    ASSERT_THROW(lookup.getSeparatorWord(), std::out_of_range);
 }
 
 /**

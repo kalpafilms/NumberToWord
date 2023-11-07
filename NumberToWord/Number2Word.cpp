@@ -18,6 +18,7 @@ Number2Word::~Number2Word() {}
  */
 void Number2Word::transform(const std::string &input)
 {
+    // Throw exception when the input is not valid.
     bool isExceedLengthLimit = !isUnderLengthLimit(input);
     if (isExceedLengthLimit)
     {
@@ -29,14 +30,36 @@ void Number2Word::transform(const std::string &input)
         throw std::invalid_argument("Not a number");
     }
 
-    if (input == "1")
+    std::deque<std::string> converted;
+    LookupEnglish lookup;
+    const uint32_t separatorUnit{(uint32_t)std::pow(10, lookup.getSeparatorSize())};
+    uint32_t number{stoui(input)};
+
+    if (number == 0)
     {
-        std::cout << "one" << std::endl;
+        std::cout << lookup.getWordUnderSeparator(0);
     }
-    else if (input == "0")
+
+    while (number > 0)
     {
-        std::cout << "zero" << std::endl;
+        uint32_t remainder{number % separatorUnit};
+        number /= separatorUnit;
+        converted.push_front(lookup.getWord(remainder));
+        if (number > 0)
+        {
+            converted.push_front(lookup.getSeparatorWord());
+        }
     }
+
+    for (int i = 0; i < converted.size(); i++)
+    {
+        if (i > 0)
+        {
+            std::cout << " ";
+        }
+        std::cout << converted[i];
+    }
+    std::cout << std::endl;
 }
 
 /**
