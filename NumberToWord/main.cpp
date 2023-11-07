@@ -13,6 +13,7 @@ int main(int argc, const char *argv[])
 {
     Number2Word n2w;
     std::string number{};
+    std::string converted{};
 
     while (true)
     {
@@ -27,7 +28,8 @@ int main(int argc, const char *argv[])
 
         try
         {
-            n2w.transform(number);
+            converted = n2w.transform(number);
+            std::cout << converted << std::endl;
         }
         catch (std::invalid_argument const &e)
         {

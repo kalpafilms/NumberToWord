@@ -48,7 +48,9 @@ TEST_F(N2WTests, transform_ShouldPrintOutZero_WhenPass0)
     const std::string INPUT{"0"};
     const std::string EXPECTED{"zero"};
 
-    evaluateTransform(INPUT, EXPECTED);
+    std::string converted = n2w.transform(INPUT);
+
+    ASSERT_EQ(converted, EXPECTED);
 }
 
 TEST_F(N2WTests, transform_ShouldPrintOutOne_WhenPass1)
@@ -56,7 +58,9 @@ TEST_F(N2WTests, transform_ShouldPrintOutOne_WhenPass1)
     const std::string INPUT{"1"};
     const std::string EXPECTED{"one"};
 
-    evaluateTransform(INPUT, EXPECTED);
+    std::string converted = n2w.transform(INPUT);
+
+    ASSERT_EQ(converted, EXPECTED);
 }
 
 TEST_F(N2WTests, transform_ShouldRaiseException_WhenPass123a)
@@ -71,7 +75,9 @@ TEST_F(N2WTests, transform_ShouldPrintOutTwelveThousandThreeHundredFortyFive_Whe
     const std::string INPUT{"12345"};
     const std::string EXPECTED{"twelve thousand three hundred forty-five"};
 
-    evaluateTransform(INPUT, EXPECTED);
+    std::string converted = n2w.transform(INPUT);
+
+    ASSERT_EQ(converted, EXPECTED);
 }
 
 TEST_F(N2WTests, transform_ShouldPrintOutFourBillionTwoHundredNinetyFourMillionNineHundredSixtySevenThousandTwoHundredNinetyFive_WhenPass4294967295)
@@ -79,7 +85,9 @@ TEST_F(N2WTests, transform_ShouldPrintOutFourBillionTwoHundredNinetyFourMillionN
     const std::string INPUT{"4294967295"};
     const std::string EXPECTED{"four billion two hundred ninety-four million nine hundred sixty-seven thousand two hundred ninety-five"};
 
-    evaluateTransform(INPUT, EXPECTED);
+    std::string converted = n2w.transform(INPUT);
+
+    ASSERT_EQ(converted, EXPECTED);
 }
 
 TEST_F(N2WTests, transform_ShouldRaiseException_WhenPass4294967296)

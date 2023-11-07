@@ -15,8 +15,10 @@ Number2Word::~Number2Word() {}
  * Transform an integer to a word
  *
  * @param input User input string to be converted into a word
+ * 
+ * @return      A converted word of the input number
  */
-void Number2Word::transform(const std::string &input)
+std::string Number2Word::transform(const std::string &input)
 {
     // Throw exception when the input is not valid.
     bool isExceedLengthLimit = !isUnderLengthLimit(input);
@@ -31,13 +33,14 @@ void Number2Word::transform(const std::string &input)
     }
 
     std::deque<std::string> converted;
+    std::stringstream output;
     LookupEnglish lookup;
     const uint32_t separatorUnit{(uint32_t)std::pow(10, lookup.getSeparatorSize())};
     uint32_t number{stoui(input)};
 
     if (number == 0)
     {
-        std::cout << lookup.getWordUnderSeparator(0);
+        output << lookup.getWordUnderSeparator(0);
     }
 
     while (number > 0)
@@ -55,11 +58,12 @@ void Number2Word::transform(const std::string &input)
     {
         if (i > 0)
         {
-            std::cout << " ";
+            output << " ";
         }
-        std::cout << converted[i];
+        output << converted[i];
     }
-    std::cout << std::endl;
+
+    return output.str();
 }
 
 /**

@@ -21,7 +21,7 @@ public:
     Number2Word();
     virtual ~Number2Word();
 
-    void transform(const std::string &input);
+    std::string transform(const std::string &input);
     uint32_t stoui(const std::string &input);
     bool isUnderLengthLimit(const std::string &input);
     bool isNumber(const std::string &input);
