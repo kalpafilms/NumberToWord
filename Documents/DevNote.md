@@ -90,3 +90,24 @@
 - `uint32_t stoui(const std::string &input)`: Custom String to Integer function to handle numeric values only
 - `bool isUnderLimit(const std::string &input);`: String validator function, whether it is shorter than the specified length
 - `bool isNumber(const std::string &input)`: String validator function, whether it contains only all numeric values
+
+## New Feature - Supporting additional language
+
+1. Get user input for language selection, before getting number.
+2. Get user input for the number.
+3. Instantiate a language lookup instance per selected language.
+4. Do the same for the rest of the procedure.
+
+### Korean language support
+
+- The size of the separator is 4.
+- Need to consider Korean language fonts or Unicode support on systems.
+- There is no special case such as eleven through nineteen.
+
+#### Example
+
+- 1 -> 일
+- 42 -> 사십이
+- 12345 -> 일만 이천삼백사십오
+- 4294967295 -> 사십이억 구천사백구십육만 칠천이백구십오
+- 999999999999 -> 구천구백구십구억 구천구백구십구만 구천구백구십구
