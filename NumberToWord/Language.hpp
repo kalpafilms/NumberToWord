@@ -5,8 +5,8 @@
 //  Created by Joohyung Ryu on 2023-11-11.
 //
 
-#ifndef LanguageType_h
-#define LanguageType_h
+#ifndef Language_hpp
+#define Language_hpp
 
 enum class Language : char
 {
@@ -14,4 +14,4 @@ enum class Language : char
     Korean
 };
 
-#endif /* LanguageType_h */
+#endif /* Language_hpp */
