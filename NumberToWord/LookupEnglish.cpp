@@ -12,6 +12,9 @@ LookupEnglish::~LookupEnglish() {}
 
 /**
  * Forming a word for three-digit number
+ *
+ * @param number Three-digit unsigned integer to get the English word
+ * @return       An English word for the number
  */
 std::string LookupEnglish::getWord(uint32_t number)
 {
