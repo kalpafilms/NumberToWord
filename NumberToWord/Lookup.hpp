@@ -24,18 +24,18 @@ public:
     virtual std::string getWord(uint32_t number) = 0;
 
     /**
-     * Look up table for 0
-     *
-     * @return A word for the number 0 (e.g., zero for English)
-     */
-    virtual std::string getZeroWord() = 0;
-
-    /**
      * Look up table for separator words
      *
      * @return A separator word (e.g., thousand for English)
      */
     virtual std::string getSeparatorWord() = 0;
+
+    /**
+     * Look up table for 0
+     *
+     * @return A word for the number 0 (e.g., zero for English)
+     */
+    virtual std::string getZeroWord() = 0;
 
     /**
      * Look up table for separators (e.g., 3 for English)

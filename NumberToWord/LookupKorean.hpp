@@ -8,6 +8,7 @@
 #ifndef LookupKorean_hpp
 #define LookupKorean_hpp
 
+#include <deque>
 #include <iostream>
 
 #include "Lookup.hpp"
@@ -16,6 +17,7 @@ class LookupKorean : public Lookup
 {
 private:
     const uint8_t SEPARATOR_SIZE{4};
+    std::deque<std::string> separatorWords{"만", "억"};
 
 public:
     LookupKorean();

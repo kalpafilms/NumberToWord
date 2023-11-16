@@ -22,23 +22,31 @@ std::string LookupKorean::getWord(uint32_t number)
 }
 
 /**
+ * Look up table for separators
+ *
+ * @return A separator word per ten thousand
+ */
+std::string LookupKorean::getSeparatorWord()
+{
+    if (separatorWords.empty())
+    {
+        throw std::out_of_range("No more separator");
+    }
+
+    std::string separator{separatorWords.front()};
+    separatorWords.pop_front();
+    
+    return separator;
+}
+
+/**
  * Look up table for 0
  *
  * @return A word for the number 0, 영
  */
 std::string LookupKorean::getZeroWord()
 {
-    return std::string();
-}
-
-/**
- * Look up table for separators
- *
- * @return A separator word per ten thousand(만)
- */
-std::string LookupKorean::getSeparatorWord()
-{
-    return std::string();
+    return "영";
 }
 
 /**
@@ -48,5 +56,5 @@ std::string LookupKorean::getSeparatorWord()
  */
 uint8_t LookupKorean::getSeparatorSize()
 {
-    return 0;
+    return SEPARATOR_SIZE;
 }
