@@ -11,14 +11,48 @@ LookupKorean::LookupKorean() {}
 LookupKorean::~LookupKorean() {}
 
 /**
- * Forming a word per separator-sized length number (e.g., 구천팔백칠십육 for 9876)
+ * Forming a word per separator-sized length number (i.e., a number less than 10,000. e.g., 구천팔백칠십육 for 9,876)
  *
  * @param number Separator-sized length unsigned integer to get the English word
  * @return       A Korean word for the number
  */
-std::string LookupKorean::getWord(uint32_t number)
+std::string LookupKorean::getWordFrom(uint32_t number)
 {
-    return std::string();
+    std::stringstream word;
+    uint8_t firstNumber{0};
+    uint32_t divider{(uint32_t)std::pow(10, SEPARATOR_SIZE)};
+    auto digitIt = digits.rbegin();
+
+    if (number >= divider)
+    {
+        throw std::invalid_argument("Exceed number limit");
+    }
+
+    while (number > 0)
+    {
+        divider /= 10;
+        firstNumber = number / divider;
+        number %= divider;
+
+        if (firstNumber > 0)
+        {
+            word << ones[firstNumber];
+            word << *digitIt;
+        }
+        else if (digitIt == digits.rend())
+        {
+            if (number > 0 && number < 10)
+            {
+                word << ones[number];
+            }
+
+            break;
+        }
+
+        digitIt++;
+    }
+
+    return word.str();
 }
 
 /**
@@ -35,7 +69,7 @@ std::string LookupKorean::getSeparatorWord()
 
     std::string separator{separatorWords.front()};
     separatorWords.pop_front();
-    
+
     return separator;
 }
 
@@ -46,7 +80,7 @@ std::string LookupKorean::getSeparatorWord()
  */
 std::string LookupKorean::getZeroWord()
 {
-    return "영";
+    return ones[0];
 }
 
 /**

@@ -16,12 +16,12 @@ public:
     virtual ~Lookup(){};
 
     /**
-     * Forming a word per separator-sized length number (e.g., nine hundred ninety-nine for English)
+     * Forming a word per separator-sized length number (i.e., a number less than 1,000 for English. e.g., nine hundred ninety-nine for English)
      *
      * @param number Separator-sized length unsigned integer to get the English word
      * @return       An English word for the number
      */
-    virtual std::string getWord(uint32_t number) = 0;
+    virtual std::string getWordFrom(uint32_t number) = 0;
 
     /**
      * Look up table for separator words
