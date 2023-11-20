@@ -40,14 +40,14 @@ std::string Number2Word::transform(const std::string &input)
 
     if (number == 0)
     {
-        output << lookup.getWordUnderSeparator(0);
+        output << lookup.getZeroWord();
     }
 
     while (number > 0)
     {
         uint32_t remainder{number % separatorUnit};
         number /= separatorUnit;
-        converted.push_front(lookup.getWord(remainder));
+        converted.push_front(lookup.getWordFrom(remainder));
         if (number > 0)
         {
             converted.push_front(lookup.getSeparatorWord());

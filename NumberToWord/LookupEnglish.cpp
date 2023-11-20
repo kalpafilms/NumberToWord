@@ -16,7 +16,7 @@ LookupEnglish::~LookupEnglish() {}
  * @param number Three-digit unsigned integer to get the English word
  * @return       An English word for the number
  */
-std::string LookupEnglish::getWord(uint32_t number)
+std::string LookupEnglish::getWordFrom(uint32_t number)
 {
     std::stringstream word;
 
@@ -41,6 +41,11 @@ std::string LookupEnglish::getWord(uint32_t number)
     return word.str();
 }
 
+std::string LookupEnglish::getZeroWord()
+{
+    return ones[0];
+}
+
 /**
  * Look up table for one or two-digit number
  *
@@ -56,20 +61,20 @@ std::string LookupEnglish::getWordUnderSeparator(uint32_t number)
 
     std::string word;
 
-    if (number < onesDigit.size())
+    if (number < ones.size())
     {
-        word = onesDigit[number];
+        word = ones[number];
     }
     else
     {
-        int tens = number / 10;
-        int ones = number % 10;
+        int ten = number / 10;
+        int one = number % 10;
 
-        word = tensDigit[tens - 2];
+        word = tens[ten - 2];
 
-        if (ones != 0)
+        if (one != 0)
         {
-            word.append("-").append(onesDigit[ones]);
+            word.append("-").append(ones[one]);
         }
     }
 
@@ -83,13 +88,13 @@ std::string LookupEnglish::getWordUnderSeparator(uint32_t number)
  */
 std::string LookupEnglish::getSeparatorWord()
 {
-    if (thousandDigits.empty())
+    if (separatorWords.empty())
     {
         throw std::out_of_range("No more thousand separator");
     }
 
-    std::string separator{thousandDigits.front()};
-    thousandDigits.pop_front();
+    std::string separator{separatorWords.front()};
+    separatorWords.pop_front();
 
     return separator;
 }

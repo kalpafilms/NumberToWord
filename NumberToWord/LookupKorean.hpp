@@ -26,7 +26,7 @@ private:
 
 public:
     LookupKorean();
-    ~LookupKorean();
+    virtual ~LookupKorean();
 
     virtual std::string getWordFrom(uint32_t number);
     virtual std::string getZeroWord();

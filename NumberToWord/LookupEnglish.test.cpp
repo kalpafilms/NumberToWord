@@ -12,61 +12,61 @@
 class LookupEnTests : public ::testing::Test
 {
 public:
-    LookupEnglish lookup;
-
     LookupEnTests(){};
     virtual ~LookupEnTests(){};
+
+    LookupEnglish lookup;
 };
 
 /**
- * Tests for getWord function
+ * Tests for getWordFrom function
  */
-TEST_F(LookupEnTests, getWord_ShouldReturnEmptyString_WhenPass0)
+TEST_F(LookupEnTests, getWordFrom_ShouldReturnEmptyString_WhenPass0)
 {
     const uint32_t INPUT{0};
     const std::string EXPECTED{""};
 
-    std::string word = lookup.getWord(INPUT);
+    std::string word = lookup.getWordFrom(INPUT);
 
     ASSERT_EQ(word, EXPECTED);
 }
 
-TEST_F(LookupEnTests, getWord_ShouldReturnThree_WhenPass3)
+TEST_F(LookupEnTests, getWordFrom_ShouldReturnThree_WhenPass3)
 {
     const uint32_t INPUT{3};
     const std::string EXPECTED{"three"};
 
-    std::string word = lookup.getWord(INPUT);
+    std::string word = lookup.getWordFrom(INPUT);
 
     ASSERT_EQ(word, EXPECTED);
 }
 
-TEST_F(LookupEnTests, getWord_ShouldReturnFortyTwo_WhenPass42)
+TEST_F(LookupEnTests, getWordFrom_ShouldReturnFortyTwo_WhenPass42)
 {
     const uint32_t INPUT{42};
     const std::string EXPECTED{"forty-two"};
 
-    std::string word = lookup.getWord(INPUT);
+    std::string word = lookup.getWordFrom(INPUT);
 
     ASSERT_EQ(word, EXPECTED);
 }
 
-TEST_F(LookupEnTests, getWord_ShouldReturnOneHundred_WhenPass100)
+TEST_F(LookupEnTests, getWordFrom_ShouldReturnOneHundred_WhenPass100)
 {
     const uint32_t INPUT{100};
     const std::string EXPECTED{"one hundred"};
 
-    std::string word = lookup.getWord(INPUT);
+    std::string word = lookup.getWordFrom(INPUT);
 
     ASSERT_EQ(word, EXPECTED);
 }
 
-TEST_F(LookupEnTests, getWord_ShouldReturnNineHundredNinetyNine_WhenPass999)
+TEST_F(LookupEnTests, getWordFrom_ShouldReturnNineHundredNinetyNine_WhenPass999)
 {
     const uint32_t INPUT{999};
     const std::string EXPECTED{"nine hundred ninety-nine"};
 
-    std::string word = lookup.getWord(INPUT);
+    std::string word = lookup.getWordFrom(INPUT);
 
     ASSERT_EQ(word, EXPECTED);
 }
