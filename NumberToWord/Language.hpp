@@ -10,8 +10,9 @@
 
 enum class Language : char
 {
-    English,
-    Korean
+    NONE,
+    ENGLISH,
+    KOREAN
 };
 
 #endif /* Language_hpp */
