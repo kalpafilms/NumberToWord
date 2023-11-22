@@ -10,6 +10,9 @@
 
 #include <iostream>
 
+/**
+ * Lookup table interface for languages
+ */
 class Lookup
 {
 public:

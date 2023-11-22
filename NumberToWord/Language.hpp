@@ -8,6 +8,9 @@
 #ifndef Language_hpp
 #define Language_hpp
 
+/**
+ * Enum class for Language types
+ */
 enum class Language : char
 {
     NONE,

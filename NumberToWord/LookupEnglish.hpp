@@ -15,6 +15,9 @@
 
 #include "Lookup.hpp"
 
+/**
+ * Look up table for English
+ */
 class LookupEnglish : public Lookup
 {
 private:

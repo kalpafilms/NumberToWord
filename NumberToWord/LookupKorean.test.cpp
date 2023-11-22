@@ -19,7 +19,7 @@ public:
 };
 
 /**
- * Test for getWordFrom function
+ * Tests for getWordFrom function
  */
 TEST_F(LookupKoTests, getWordFrom_ShouldReturnEmptyString_WhenPass0)
 {

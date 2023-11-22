@@ -15,6 +15,9 @@
 
 #include "LookupEnglish.hpp"
 
+/**
+ * Transform a number to an word by transform() function
+ */
 class Number2Word
 {
 public:
